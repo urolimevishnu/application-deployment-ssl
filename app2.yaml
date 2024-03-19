@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: vishnuvpm/nginx-app2
+        image: vishnuvpm/nginx-app2:latest
         ports:
         - containerPort: 80
 ---

@@ -14,8 +14,8 @@ spec:
   #  - dev.vishnuvpm.tech
   #  secretName: dev-tls-secret
   rules:
-  #- host: dev.vishnuvpm.tech
-  - http:
+  - host: dev.vishnuvpm.tech
+    http:
       paths:
       - path: /app
         pathType: Prefix

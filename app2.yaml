@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-app2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-app2
+  template:
+    metadata:
+      labels:
+        app: nginx-app2
+    spec:
+      containers:
+      - name: nginx
+        image: vishnuvpm/nginx-app2
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service-app2
+spec:
+  selector:
+    app: nginx-app2
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

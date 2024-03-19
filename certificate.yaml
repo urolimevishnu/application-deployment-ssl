@@ -1,0 +1,27 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: app1-certificate
+  namespace: default
+spec:
+  secretName: app1-tls-secret
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  dnsNames:
+  - app1.vishnuvpm.tech
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: app2-certificate
+  namespace: default
+spec:
+  secretName: app2-tls-secret
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  dnsNames:
+  - app2.vishnuvpm.tech
+

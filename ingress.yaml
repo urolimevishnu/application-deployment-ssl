@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-aigc
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+    cert-manager.io/cluster-issuer: letsencrypt
+    appgw.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  #  ingressClassName: azure-application-gateway
+  tls:
+  - hosts:
+    - app1.vishnuvpm.tech
+    secretName: app1-tls-secret
+  - hosts:
+    - app2.vishnuvpm.tech
+    secretName: app2-tls-secret
+  rules:
+  - host: app1.vishnuvpm.tech
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-service-app1
+            port:
+              number: 80
+  - host: app2.vishnuvpm.tech
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-service-app2
+            port:
+              number: 80
+

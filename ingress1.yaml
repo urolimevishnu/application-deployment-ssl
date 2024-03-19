@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-aigc
+  namespace: dev
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+    #cert-manager.io/cluster-issuer: letsencrypt
+    #appgw.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  #  ingressClassName: azure-application-gateway
+  #tls:
+  #- hosts:
+  #  - dev.vishnuvpm.tech
+  #  secretName: dev-tls-secret
+  rules:
+  #- host: dev.vishnuvpm.tech
+  - http:
+      paths:
+      - path: /app
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-deployment-app1
+            port:
+              number: 80
